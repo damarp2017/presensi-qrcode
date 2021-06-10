@@ -12,17 +12,20 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                Account&ensp;<i class="far fa-bell"></i>
+                Account&ensp;<i class="fas fa-user-cog"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-header">Your Account</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">Profiles</a>
+                <a href="#" class="dropdown-item dropdown-footer">
+                    <i class="fas fa-user-circle"></i>&ensp;Profiles
+                </a>
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer"
-                        onclick="event.preventDefault(); this.closest('form').submit();"> {{ __('Log Out') }}
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                        <i class="fas fa-sign-out-alt"></i>&ensp;{{ __('Log Out') }}
                     </a>
                 </form>
                 {{-- <a href="#" class="dropdown-item dropdown-footer">Logout</a> --}}

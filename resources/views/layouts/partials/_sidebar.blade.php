@@ -23,16 +23,19 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <!-- just only admin can access -->
+                @can('manage everything')
+                <li class="nav-item {{ request()->routeIs('admin.grade.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.grade.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-layer-group"></i>
                         <p>
                             Master Kelas
                             <i class="right fas fa-angle-left"></i>
@@ -40,22 +43,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.grade.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.grade.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Kelas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.grade.create') }}"
+                                class="nav-link {{ request()->routeIs('admin.grade.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Buat Kelas Baru</p>
+                                <p>Tambah Kelas Baru</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Master Siswa
                             <i class="right fas fa-angle-left"></i>
@@ -76,6 +81,19 @@
                         </li>
                     </ul>
                 </li>
+                @endcan
+
+                <!-- parents can access -->
+                @can('show attendance')
+                <li class="nav-item">
+                    <a href="{{ route('parent.attendance.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            Lihat Kehadiran
+                        </p>
+                    </a>
+                </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

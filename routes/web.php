@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Parent\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-require __DIR__.'/auth.php';
+    // route that only admin can access
+    Route::middleware(['permission:manage everything'])->group(function () {
+        Route::get('/master-kelas', [
+            GradeController::class, 'index'
+        ])->name('admin.grade.index');
+        Route::get('/master-kelas/tambah', [
+            GradeController::class, 'create'
+        ])->name('admin.grade.create');
+    });
+
+    // route for parent
+    Route::get('attendace', [
+        AttendanceController::class, 'index'
+    ])->name('parent.attendance.index');
+});
+
+require __DIR__ . '/auth.php';
