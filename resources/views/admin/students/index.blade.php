@@ -106,12 +106,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Siswa</h1>
+                    <h1 class="m-0">Data Seluruh Siswa</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Data Siswa</li>
+                        <li class="breadcrumb-item">Data Seluruh Siswa</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -142,13 +142,13 @@
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->grade->name }}</td>
                                         <td>
-                                          <a href="{{ route('admin.student.edit', $student) }}"
-                                              class="btn btn-info btn-sm">ubah
+                                            <a href="{{ route('admin.student.edit', $student) }}"
+                                                class="btn btn-info btn-sm">ubah
                                             </a>
                                             &ensp;
-                                          <a href="javascript:void(0)" class="text-danger text-sm"
-                                              onclick="showAlertModal('{{$student->id}}','{{$student->name}}')"><u>hapus</u>
-                                          </a>
+                                            <a href="javascript:void(0)" class="text-danger text-sm"
+                                                onclick="showAlertModal('{{$student->id}}','{{$student->name}}')"><u>hapus</u>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -168,6 +168,6 @@
             </div>
         </div>
     </div>
-      <div id="modal-wrapper"></div>
+    <div id="modal-wrapper"></div>
 </div>
 @endsection
