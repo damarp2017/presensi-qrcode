@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Grade;
 use App\Models\Student;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Str;
 
@@ -16,6 +17,7 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Factory::create();
         for ($i = 10; $i <= 12; $i++) {
             for ($j = 1; $j <= 3; $j++) {
                 $postfix = ($j == 1) ? 'a' : (($j == 2) ? 'b' : 'c');
@@ -27,10 +29,10 @@ class StudentSeeder extends Seeder
                     $student = new Student();
                     $student->grade_id = $grade->id;
                     $student->nisn = mt_rand(1000000000, 9999999999);
-                    $student->name = "Murid " . $x . "-" . $grade->name;
+                    $student->name = $faker->name();
                     $student->gender = ($x % 2) ? 'male' : 'female';
                     $student->phone = "0899" . mt_rand(10000000, 99999999);
-                    $student->address = "Jalan Sunan Kalijaga No." . $x . " Blok " . $postfix;
+                    $student->address = $faker->address();
                     $student->save();
                 }
             }
