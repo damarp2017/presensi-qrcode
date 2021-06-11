@@ -64,6 +64,15 @@ Route::middleware('auth')->group(function () {
         Route::post('students/store', [
             StudentController::class, 'store'
         ])->name('admin.student.store');
+        Route::get('/students/{student}/edit', [
+            StudentController::class, 'edit'
+        ])->name('admin.student.edit');
+        Route::patch('/students/{student}/update', [
+            StudentController::class, 'update'
+        ])->name('admin.student.update');
+        Route::delete('/students/destroy/{id}', [
+            StudentController::class, 'destroy'
+        ])->name('admin.student.destroy');
     });
 
     // route for parent

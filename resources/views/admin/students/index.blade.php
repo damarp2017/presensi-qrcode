@@ -58,6 +58,45 @@
 </script>
 @endif
 
+@if ($message = Session::get('error'))
+<script>
+    message = {!! json_encode($message) !!}
+    $(function() {
+        toastr.error(message);
+    });
+</script>
+@endif
+
+<script>
+    function showAlertModal(id,name) {
+        const url = "{{ route('admin.student.destroy', '') }}" + '/' + id;
+        const modal = `
+        <div class="modal fade" id="modal-danger">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title">Peringatan</h4>
+                    </div>
+                    <form action="${url}" method="post">
+                        @method('delete')
+                        @csrf
+                        <div class="modal-body">
+                            <p>Apakah anda yakin akan menghapus data siswa: ${name}?</p>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batalkan</button>
+                            <button type="submit" class="btn btn-outline-danger">Ya, saya yakin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `;
+        $('#modal-wrapper').html(modal);
+        $('#modal-danger').modal('show');
+    }
+</script>
+
 @endpush
 
 @section('main')
@@ -102,7 +141,15 @@
                                         <td></td>
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->grade->name }}</td>
-                                        <td>-</td>
+                                        <td>
+                                          <a href="{{ route('admin.student.edit', $student) }}"
+                                              class="btn btn-info btn-sm">ubah
+                                            </a>
+                                            &ensp;
+                                          <a href="javascript:void(0)" class="text-danger text-sm"
+                                              onclick="showAlertModal('{{$student->id}}','{{$student->name}}')"><u>hapus</u>
+                                          </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -121,5 +168,6 @@
             </div>
         </div>
     </div>
+      <div id="modal-wrapper"></div>
 </div>
 @endsection
