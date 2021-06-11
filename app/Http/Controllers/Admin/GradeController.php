@@ -61,8 +61,14 @@ class GradeController extends Controller
     {
         $grade = Grade::find($grade_id);
         $name = $grade->name;
-        $grade->delete();
-        return redirect()->route('admin.grade.index')
-            ->with(["success" => "Data kelas: $name berhasil dihapus."]);
+
+        if ($grade->students->count() == 0) {
+            $grade->delete();
+            return redirect()->route('admin.grade.index')
+                ->with(["success" => "Data kelas: $name berhasil dihapus."]);
+        } else {
+            return redirect()->route('admin.grade.index')
+                ->with(["error" => "Data kelas: $name gagal dihapus, karena masih memiliki siswa. Silahkan kosongkan kelas terlebih dahulu."]);
+        }
     }
 }

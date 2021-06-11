@@ -57,6 +57,7 @@
     });
 </script>
 @endif
+
 @endpush
 
 @section('main')
@@ -91,6 +92,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Siswa</th>
+                                        <th>Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -99,6 +101,7 @@
                                     <tr>
                                         <td></td>
                                         <td>{{ $student->name }}</td>
+                                        <td>{{ $student->grade->name }}</td>
                                         <td>-</td>
                                     </tr>
                                     @endforeach
@@ -107,6 +110,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Siswa</th>
+                                        <th>Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

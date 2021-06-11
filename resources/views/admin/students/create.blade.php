@@ -74,7 +74,7 @@
                                     <label>Kelas</label>
                                     <select class="form-control select2bs4" style="width: 100%;" required
                                         name="grade_id">
-                                        <option value="0" selected="selected">-- Pilih Kelas --</option>
+                                        <option value="" selected="selected">-- Pilih Kelas --</option>
                                         @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                         @endforeach

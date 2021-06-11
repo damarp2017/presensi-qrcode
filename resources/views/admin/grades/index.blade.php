@@ -56,6 +56,16 @@
     });
 </script>
 @endif
+
+@if ($message = Session::get('error'))
+<script>
+    message = {!! json_encode($message) !!}
+    $(function() {
+        toastr.error(message);
+    });
+</script>
+@endif
+
 <script>
     function showAlertModal(grade) {
         const url = "{{ route('admin.grade.destroy', '') }}" + '/' + grade.id;

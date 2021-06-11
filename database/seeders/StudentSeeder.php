@@ -7,7 +7,7 @@ use App\Models\Student;
 use Illuminate\Database\Seeder;
 use Str;
 
-class GradeSeeder extends Seeder
+class StudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,11 +25,13 @@ class GradeSeeder extends Seeder
 
                 for ($x = 1; $x <= 10; $x++) {
                     $student = new Student();
+                    $student->grade_id = $grade->id;
                     $student->nisn = mt_rand(1000000000, 9999999999);
-                    $student->name = "Murid" . $x . "-" . $grade->id;
+                    $student->name = "Murid " . $x . "-" . $grade->name;
                     $student->gender = ($x % 2) ? 'male' : 'female';
-                    $student->phone = "0899630880" . $x;
+                    $student->phone = "0899" . mt_rand(10000000, 99999999);
                     $student->address = "Jalan Sunan Kalijaga No." . $x . " Blok " . $postfix;
+                    $student->save();
                 }
             }
         }

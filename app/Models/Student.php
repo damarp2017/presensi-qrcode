@@ -16,4 +16,9 @@ class Student extends Model
         'phone',
         'gender',
     ];
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 }
