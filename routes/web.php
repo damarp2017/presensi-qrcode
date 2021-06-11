@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Parent\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,12 +27,37 @@ Route::middleware('auth')->group(function () {
 
     // route that only admin can access
     Route::middleware(['permission:manage everything'])->group(function () {
-        Route::get('/master-kelas', [
+
+        // grade's route
+        Route::get('/grades', [
             GradeController::class, 'index'
         ])->name('admin.grade.index');
-        Route::get('/master-kelas/tambah', [
+        Route::get('/grades/create', [
             GradeController::class, 'create'
         ])->name('admin.grade.create');
+        Route::post('/grades/store', [
+            GradeController::class, 'store'
+        ])->name('admin.grade.store');
+        Route::get('/grades/{grade}/edit', [
+            GradeController::class, 'edit'
+        ])->name('admin.grade.edit');
+        Route::patch('/grades/{grade}/update', [
+            GradeController::class, 'update'
+        ])->name('admin.grade.update');
+        Route::delete('/grades/destroy/{id}', [
+            GradeController::class, 'destroy'
+        ])->name('admin.grade.destroy');
+
+        // student's route
+        Route::get('students', [
+            StudentController::class, 'index'
+        ])->name('admin.student.index');
+        Route::get('students/create', [
+            StudentController::class, 'create'
+        ])->name('admin.student.create');
+        Route::post('students/store', [
+            StudentController::class, 'store'
+        ])->name('admin.student.store');
     });
 
     // route for parent

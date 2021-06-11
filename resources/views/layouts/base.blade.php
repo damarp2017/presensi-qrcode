@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('layouts.partials._styles')
 
     <!-- just in case when we need additional styles -->
-    @yield('styles')
+    @stack('styles')
 
 </head>
 
@@ -38,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
 
     @include('layouts.partials._scripts')
-    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>
