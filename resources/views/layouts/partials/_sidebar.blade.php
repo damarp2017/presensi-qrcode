@@ -86,7 +86,8 @@
                 <!-- parents can access -->
                 @can('show attendance')
                 <li class="nav-item">
-                    <a href="{{ route('parent.attendance.index') }}" class="nav-link">
+                    <a href="{{ route('parent.attendance.index') }}"
+                        class="nav-link {{ request()->routeIs('parent.attendance.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Lihat Kehadiran
