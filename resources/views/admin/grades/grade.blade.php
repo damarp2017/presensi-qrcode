@@ -106,12 +106,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Kelas</h1>
+                    <h1 class="m-0">Data Siswa Kelas {{ $grade->name }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Data Kelas</li>
+                        <li class="breadcrumb-item">Data Siswa Kelas {{ $grade->name }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -130,45 +130,23 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kelas</th>
-                                        <th>Jumlah Siswa</th>
+                                        <th>Nama Siswa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($grades as $grade)
+                                    @foreach ($students as $student)
                                     <tr>
                                         <td></td>
-                                        <td>{{ $grade->name }}</td>
-                                        <td>
-                                            @if ($grade->students->count())
-                                            <span class="badge badge-warning text-md">
-                                                {{ $grade->students->count() }} siswa
-                                            </span>
-                                            &ensp;
-                                            <a href="{{ route('admin.grade.grade', $grade->name) }}"
-                                                class="btn btn-secondary btn-sm">
-                                                lihat daftar
-                                            </a>
-                                            @else
-                                            <span class="text-sm text-danger">belum ada siswa</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('admin.grade.edit', $grade) }}"
-                                                class="btn btn-info btn-sm">ubah</a>
-                                            &ensp;
-                                            <a href="javascript:void(0)" class="text-danger text-sm"
-                                                onclick="showAlertModal({{ $grade }})"><u>hapus</u></a>
-                                        </td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>-</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kelas</th>
-                                        <th>Jumlah Siswa</th>
+                                        <th>Nama Siswa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

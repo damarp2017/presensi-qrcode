@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Parent\AttendanceController;
+use App\Models\Grade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/grades/destroy/{id}', [
             GradeController::class, 'destroy'
         ])->name('admin.grade.destroy');
+
+        // get lists student on specific grade
+        Route::get('/grades/{grade_name}', [
+            GradeController::class, 'grade'
+        ])->name('admin.grade.grade');
 
         // student's route
         Route::get('students', [

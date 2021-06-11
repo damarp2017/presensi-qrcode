@@ -71,4 +71,14 @@ class GradeController extends Controller
                 ->with(["error" => "Data kelas: $name gagal dihapus, karena masih memiliki siswa. Silahkan kosongkan kelas terlebih dahulu."]);
         }
     }
+
+    public function grade($grade_name)
+    {
+        $grade = Grade::where('name', $grade_name)->first();
+        $students = $grade->students()->orderBy('name')->get();
+        return view('admin.grades.grade', [
+            'grade' => $grade,
+            'students' => $students,
+        ]);
+    }
 }
