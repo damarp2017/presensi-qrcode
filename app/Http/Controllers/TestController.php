@@ -17,4 +17,13 @@ class TestController extends Controller
         ]);
         return $pdf->download('test.pdf');
     }
+
+    public function index()
+    {
+        $qrcode = base64_encode(QrCode::size(200)->generate('ROYGAY!'));
+
+        return view('test-qrcode', [
+            'qrcode' => $qrcode
+        ]);
+    }
 }

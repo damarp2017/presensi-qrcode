@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test-qrcode', function () {
-    return view('test-qrcode');
-});
+Route::get('show-qrcode', [
+    TestController::class, 'index'
+]);
 
 Route::get('pdf', [
     TestController::class, 'test'
