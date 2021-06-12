@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Parent\AttendanceController;
+use App\Http\Controllers\TestController;
 use App\Models\Grade;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('test-qrcode', function () {
+    return view('test-qrcode');
+});
+
+Route::get('pdf', [
+    TestController::class, 'test'
+]);
 
 Route::get('/', function () {
     return view('welcome');
