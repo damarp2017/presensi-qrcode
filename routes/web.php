@@ -1,10 +1,13 @@
 <?php
-
+//Admin Controller
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\ParentController;
+use App\Http\Controllers\Admin\AttendanceController as AdminAttendance;
+
+//Parrent Controller
 use App\Http\Controllers\Parent\AttendanceController;
-use App\Http\Controllers\TestController;
-use App\Models\Grade;
+// use App\Models\Grade;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +30,7 @@ Route::get('pdf', [
 ]);
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -82,6 +85,16 @@ Route::middleware('auth')->group(function () {
         Route::delete('/students/destroy/{id}', [
             StudentController::class, 'destroy'
         ])->name('admin.student.destroy');
+
+        //route's admin parent
+        Route::get('/parents', [
+            ParentController::class, 'index'
+        ])->name('admin.parent.index');
+
+        //route's admin student attendace
+        Route::get('/attendances/student', [
+          AdminAttendance::class, 'index'
+        ])->name('admin.attendance.student.index');
     });
 
     // route for parent
