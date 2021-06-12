@@ -83,6 +83,65 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{ request()->routeIs('admin.parent.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.parent.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Master Wali Siswa
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.parent.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.parent.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Wali Siswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.student.create') }}"
+                                class="nav-link {{ request()->routeIs('admin.student.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Wali Siswa Baru</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item {{ request()->routeIs('admin.parent.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.parent.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Master Wali Siswa
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.parent.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.parent.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Wali Siswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.student.create') }}"
+                                class="nav-link {{ request()->routeIs('admin.student.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Wali Siswa Baru</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.attendance.student.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.attendance.student.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-clock"></i>
+                        <p>
+                            Absensi Siswa
+                        </p>
+                    </a>
+                </li>
                 @endcan
 
                 <!-- parents can access -->
