@@ -104,7 +104,6 @@ Route::middleware('auth')->group(function () {
             StudentController::class, 'printIDCard'
         ])->name('admin.card.download');
 
-
         //route's admin parent
         Route::get('/parents', [
             ParentController::class, 'index'
@@ -114,6 +113,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendances/student', [
             AdminAttendance::class, 'index'
         ])->name('admin.attendance.student.index');
+        Route::post('/attendances/{student}/student', [
+            AdminAttendance::class, 'attendance'
+        ])->name('admin.attendance.student.store');
     });
 
     // route for parent
