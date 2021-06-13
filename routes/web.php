@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AttendanceController as AdminAttendance;
 
 //Parrent Controller
 use App\Http\Controllers\Parent\AttendanceController;
+use App\Http\Controllers\TestController;
 // use App\Models\Grade;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,18 @@ Route::get('show-qrcode', [
 
 Route::get('pdf', [
     TestController::class, 'test'
+]);
+
+Route::get('idcard', [
+    TestController::class, 'idcard'
+]);
+
+Route::get('idcard2', [
+    TestController::class, 'idcard2'
+]);
+
+Route::get('idcard3', [
+    TestController::class, 'idcard3'
 ]);
 
 Route::get('/', function () {
@@ -86,6 +99,12 @@ Route::middleware('auth')->group(function () {
             StudentController::class, 'destroy'
         ])->name('admin.student.destroy');
 
+        // route admin to download card each student
+        Route::get('/students/{student}/download', [
+            StudentController::class, 'printIDCard'
+        ])->name('admin.card.download');
+
+
         //route's admin parent
         Route::get('/parents', [
             ParentController::class, 'index'
@@ -93,7 +112,7 @@ Route::middleware('auth')->group(function () {
 
         //route's admin student attendace
         Route::get('/attendances/student', [
-          AdminAttendance::class, 'index'
+            AdminAttendance::class, 'index'
         ])->name('admin.attendance.student.index');
     });
 

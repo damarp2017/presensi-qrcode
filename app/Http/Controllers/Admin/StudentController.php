@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Str;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -90,5 +93,19 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('admin.student.index')
             ->with(["success" => "Data kelas: $name berhasil dihapus."]);
+    }
+
+    public function printIDCard(Student $student)
+    {
+        $filename = Str::slug($student->grade->name . '-' . $student->name) . '.pdf';
+        $qrcode = base64_encode(
+            QrCode::size(240)->eyeColor(0, 255, 69, 0, 30, 144, 255)
+                ->generate($student->nisn)
+        );
+        $pdf = PDF::loadView('card', [
+            'qrcode' => $qrcode,
+            'student' => $student
+        ]);
+        return $pdf->download($filename);
     }
 }

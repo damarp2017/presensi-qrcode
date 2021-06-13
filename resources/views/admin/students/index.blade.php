@@ -130,8 +130,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>NISN</th>
                                         <th>Nama Siswa</th>
                                         <th>Kelas</th>
+                                        <th>QR Card</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -139,8 +141,14 @@
                                     @foreach ($students as $student)
                                     <tr>
                                         <td></td>
+                                        <td>{{ $student->nisn }}</td>
                                         <td>{{ $student->name }}</td>
                                         <td>{{ $student->grade->name }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.card.download', $student) }}"
+                                                class="btn btn-outline-success btn-sm"> QRCode Card
+                                            </a>
+                                        </td>
                                         <td>
                                             <a href="{{ route('admin.student.edit', $student) }}"
                                                 class="btn btn-info btn-sm">ubah
@@ -156,8 +164,10 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
+                                        <th>NISN</th>
                                         <th>Nama Siswa</th>
                                         <th>Kelas</th>
+                                        <th>QR Card</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

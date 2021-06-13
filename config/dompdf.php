@@ -10,7 +10,7 @@ return array(
     | Set some default values. It is possible to add all defines that can be set
     | in dompdf_config.inc.php. You can also override the entire config file.
     |
-    */
+                                            */
     'show_warnings' => false,   // Throw an Exception on warnings from dompdf
     'orientation' => 'portrait',
     'defines' => array(
@@ -27,6 +27,7 @@ return array(
          * Only the original "Base 14 fonts" are present on all pdf viewers. Additional fonts must
          * be embedded in the pdf file or the PDF may not display correctly. This can significantly
          * increase file size unless font subsetting is enabled. Before embedding a font please
+
          * review your rights under the font license.
          *
          * Any font specification in the source HTML is translated to the closest font available
@@ -237,7 +238,7 @@ return array(
         /**
          * Use the more-than-experimental HTML5 Lib parser
          */
-        "enable_html5_parser" => false,
+        "enable_html5_parser" => true,
     ),
 
 
