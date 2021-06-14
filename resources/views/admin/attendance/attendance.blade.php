@@ -106,31 +106,31 @@
        console.error(e);
      });
 
-       function showAlert(res){
-        const audio = new Audio(res.status ? soundSuccess : soundFailed);
-        audio.play();
+     function showAlert(res){
+      const audio = new Audio(res.status ? soundSuccess : soundFailed);
+      audio.play();
 
-         Swal.fire({
-               title: res.message,
-               text: res.data.name ? res.data.name +" "+ res.data.grade : 'Data siswa tidak ditemukan',
-               icon: res.status ? 'success' : 'error',
-               timer: 2000,
-               showCancelButton: false,
-               showConfirmButton: false
-           });
-       }
+       Swal.fire({
+             title: res.message,
+             text: res.data.name ? res.data.name +" "+ res.data.grade : 'Data siswa tidak ditemukan',
+             icon: res.status ? 'success' : 'error',
+             timer: 2000,
+             showCancelButton: false,
+             showConfirmButton: false
+         });
+     }
 
-       function getStudent(nisn){
-         $.ajax({
-           method: "POST",
-           headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           },
-           url : `/attendances/${nisn}/student`
-         }).done(function(res) {
-             showAlert(res)
-         })
-       }
+     function getStudent(nisn){
+       $.ajax({
+         method: "POST",
+         headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+         url : `/attendances/${nisn}/student`
+       }).done(function(res) {
+           showAlert(res)
+       })
+     }
 
 </script>
 @endpush
