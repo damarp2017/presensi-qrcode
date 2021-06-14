@@ -100,10 +100,10 @@
          let selectedCam = cameras[0];
           $.each(cameras, (i, c) => {
            if (c.name.indexOf('back') !== -1) {
-               selectedCam = c;
+               selectedCam = cameras[1];
                return false;
-           }
-       });
+             }
+         });
          scanner.start(selectedCam);
        } else {
          console.error('No cameras found.');

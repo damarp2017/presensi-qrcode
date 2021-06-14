@@ -16,8 +16,8 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id');
-            $table->timestamp('in');
-            $table->timestamp('out');
+            $table->dateTime('in')->nullable();
+            $table->dateTime('out')->nullable();
             $table->time('delay')->nullable();
             $table->enum('absent', ['A', 'I', 'S'])->nullable();
             $table->timestamps();
