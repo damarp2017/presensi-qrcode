@@ -22,29 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('show-qrcode', [
-    TestController::class, 'index'
-]);
-
-Route::get('pdf', [
-    TestController::class, 'test'
-]);
-
-Route::get('idcard', [
-    TestController::class, 'idcard'
-]);
-
-Route::get('idcard2', [
-    TestController::class, 'idcard2'
-]);
-
-Route::get('idcard3', [
-    TestController::class, 'idcard3'
-]);
-
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+Route::get('/main', function () {
+    return view('main');
+})->middleware(['permission:manage everything'])->name('main');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
