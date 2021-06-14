@@ -103,73 +103,66 @@
       return i;
     }
 
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
+    scanner.addListener('scan', function (content) {
+      getStudent(content)
+    });
 
-     let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-     scanner.addListener('scan', function (content) {
-       getStudent(content)
-     });
+    Instascan.Camera.getCameras().then(function (cameras) {
+      if (cameras.length > 0) {
+        let selectedCam = cameras[1] ? cameras[1] : cameras[0];
+        scanner.start(selectedCam);
+      } else {
+        console.error('No cameras found.');
+      }
+    }).catch(function (e) {
+      console.error(e);
+    });
 
-     Instascan.Camera.getCameras().then(function (cameras) {
-       if (cameras.length > 0) {
-         let selectedCam = cameras[0];
-          $.each(cameras, (i, c) => {
-           if (c.name.indexOf('back') !== -1) {
-               selectedCam = c;
-               return false;
-           }
-       });
-         scanner.start(selectedCam);
-       } else {
-         console.error('No cameras found.');
-       }
-     }).catch(function (e) {
-       console.error(e);
-     });
+     function showAlert(res){
+      const audio = new Audio(res.status ? soundSuccess : soundFailed);
+      audio.play();
 
-       function showAlert(res){
-        const audio = new Audio(res.status ? soundSuccess : soundFailed);
-        audio.play();
+       Swal.fire({
+             title: res.message,
+             text: res.data.name ? res.data.name +" "+ res.data.grade : 'Data siswa tidak ditemukan',
+             icon: res.status ? 'success' : 'error',
+             timer: 2000,
+             showCancelButton: false,
+             showConfirmButton: false
+         });
+     }
 
+     function getStudent(nisn){
+       $.ajax({
+         method: "POST",
+         headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+         url : `/attendances/${nisn}/student`
+       }).done(function(res) {
+           showAlert(res)
+       })
+     }
+
+     function attendaceStudentInput(){
+       const nisn = $('#nisn').val();
+       if(nisn){
+         getStudent(nisn);
+       }else {
+         const audio = new Audio(soundFailed);
+         audio.play();
          Swal.fire({
-               title: res.message,
-               text: res.data.name ? res.data.name +" "+ res.data.grade : 'Data siswa tidak ditemukan',
-               icon: res.status ? 'success' : 'error',
+               title: "Absensi Gagal",
+               text: 'NISN tidak oleh kosong',
+               icon: 'error',
                timer: 2000,
                showCancelButton: false,
                showConfirmButton: false
            });
        }
 
-       function getStudent(nisn){
-         $.ajax({
-           method: "POST",
-           headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-           },
-           url : `/attendances/${nisn}/student`
-         }).done(function(res) {
-             showAlert(res)
-         })
-       }
-
-       function attendaceStudentInput(){
-         const nisn = $('#nisn').val();
-         if(nisn){
-           getStudent(nisn);
-         }else {
-           const audio = new Audio(soundFailed);
-           audio.play();
-           Swal.fire({
-                 title: "Absensi Gagal",
-                 text: 'NISN tidak oleh kosong',
-                 icon: 'error',
-                 timer: 2000,
-                 showCancelButton: false,
-                 showConfirmButton: false
-             });
-         }
-
-       }
+     }
 
 </script>
 
