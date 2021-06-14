@@ -109,6 +109,15 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.config.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.config.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Konfigurasi Absensi
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.attendance.student.index') }}"
                         class="nav-link {{ request()->routeIs('admin.attendance.student.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-clock"></i>

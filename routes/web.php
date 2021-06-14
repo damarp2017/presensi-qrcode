@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ParentController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendance;
 
 //Parrent Controller
@@ -100,6 +101,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/attendances/{student}/student', [
             AdminAttendance::class, 'attendance'
         ])->name('admin.attendance.student.store');
+
+        //route's admin config
+        Route::get('/config', [
+            ConfigController::class, 'index'
+        ])->name('admin.config.index');
     });
 
     // route for parent
