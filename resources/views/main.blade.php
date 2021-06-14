@@ -20,24 +20,24 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-50">
-        <nav class="flex items-center justify-center flex-wrap bg-blue-500 p-10">
+        <nav class="flex items-center justify-center flex-wrap bg-blue-500 p-5 lg:p-10">
             <div class="text-white font-semibold text-2xl tracking-tight">
                 Al-Fityan Boarding School Bogor
             </div>
         </nav>
-        <div class="flex flex-wrap p-5">
-            <div class="w-full xl:w-4/6 h-full p-5">
-                <div class="bg-gray-100 border-4 border-blue-500 h-full rounded-lg shadow-lg p-10">
+        <div class="flex flex-wrap py-5 lg:px-5 lg:py-10">
+            <div class="w-full xl:w-4/6 h-full px-5">
+                <div class="bg-gray-100 border-4 border-blue-500 h-full rounded-lg shadow-lg p-5 xl:p-10">
                     <div class="text-gray-700 font-semibold mb-5">
                         Scan QR Card kamu disini.
                     </div>
-                    <div class="bg-green-500 h-80 rounded-lg">
+                    <div class="bg-green-500 h-96 rounded-lg">
 
                     </div>
                 </div>
             </div>
-            <div class="w-full xl:w-2/6 h-full p-5">
-                <div class="bg-gray-100 border-4 border-blue-500 h-full rounded-lg shadow-lg p-10">
+            <div class="w-full xl:w-2/6 h-full px-5 py-5 lg:py-10 xl:py-0">
+                <div class="bg-gray-100 border-4 border-blue-500 h-full rounded-lg shadow-lg p-5 xl:p-10">
                     <div class="text-gray-700 font-semibold mb-5">
                         Gunakan form ini saat kamu tidak bawa QR Card
                     </div>
