@@ -106,6 +106,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/config', [
             ConfigController::class, 'index'
         ])->name('admin.config.index');
+        Route::post('/config', [
+            ConfigController::class, 'update'
+        ])->name('admin.config.update');
     });
 
     // route for parent
