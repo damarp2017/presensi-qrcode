@@ -9,5 +9,5 @@ class Attendance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['student_id', 'in', 'out', 'delay', 'absent'];
+    protected $guarded = [];
 }

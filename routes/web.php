@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendances/student', [
             AdminAttendance::class, 'index'
         ])->name('admin.attendance.student.index');
-        Route::post('/attendances/{student}/student', [
+        Route::post('/attendances/student', [
             AdminAttendance::class, 'attendance'
         ])->name('admin.attendance.student.store');
 

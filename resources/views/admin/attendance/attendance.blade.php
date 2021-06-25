@@ -61,6 +61,7 @@
   </div>
   <!-- /.content -->
 </div>
+@php($config = \App\Models\Config::first() ? true : false)
 @endsection
 
 @push('scripts')
@@ -70,6 +71,18 @@
   const soundSuccess = '/assets/adminlte/sound/success.mp3';
     const soundFailed = '/assets/adminlte/sound/failed.mp3';
     const start = new Date;
+    const config = '{{$config}}';
+
+    if(!config){
+      Swal.fire({
+            title: "Tidak dapat melakukan absensi",
+            text: 'Lakukan konfigurasi absensi terlebih dahulu',
+            icon: 'error',
+            showCancelButton: false,
+            allowOutsideClick: false,
+            confirmButtonText: '<a class="text-white" href="/config">konfigurasi absensi</a>'
+        });
+    }
 
     setInterval(function() {
         var today = new Date();
@@ -112,9 +125,9 @@
 
        Swal.fire({
              title: res.message,
-             text: res.data.name ? res.data.name +" "+ res.data.grade : 'Data siswa tidak ditemukan',
+             text: res.text,
              icon: res.status ? 'success' : 'error',
-             timer: 2000,
+             timer: 2500,
              showCancelButton: false,
              showConfirmButton: false
          });
@@ -126,7 +139,8 @@
          headers: {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
          },
-         url : `/attendances/${nisn}/student`
+         url : `/attendances/student`,
+         data: {nisn: nisn}
        }).done(function(res) {
            showAlert(res)
        })
