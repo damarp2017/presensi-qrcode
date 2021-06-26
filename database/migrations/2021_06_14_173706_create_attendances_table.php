@@ -18,9 +18,12 @@ class CreateAttendancesTable extends Migration
             $table->foreignId('student_id');
             $table->dateTime('in')->nullable();
             $table->dateTime('out')->nullable();
-            $table->time('delay')->nullable();
+            $table->time('delay_in')->nullable();
+            $table->time('delay_out')->nullable();
             $table->enum('absent', ['A', 'I', 'S'])->nullable();
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('students');
         });
     }
 
