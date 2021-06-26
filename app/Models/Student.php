@@ -21,4 +21,8 @@ class Student extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+
+    public function attendances(){
+      return $this->hasMany(Attendance::class,'id', 'student_id');
+    }
 }
