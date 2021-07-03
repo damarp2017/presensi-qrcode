@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ParentController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendance;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StudentAttendanceController;
 
 //Parrent Controller
 use App\Http\Controllers\Parent\AttendanceController;
@@ -32,13 +34,11 @@ Route::get('/main', function () {
 })->middleware(['permission:manage everything'])->name('main');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
     // route that only admin can access
     Route::middleware(['permission:manage everything'])->group(function () {
-
+      Route::get('/dashboard',[
+        DashboardController::class, 'index'
+        ])->name('dashboard');
         // grade's route
         Route::get('/grades', [
             GradeController::class, 'index'
@@ -113,7 +113,7 @@ Route::middleware('auth')->group(function () {
 
     // route for parent
     Route::get('attendace', [
-        AttendanceController::class, 'index'
+        StudentAttendanceController::class, 'index'
     ])->name('parent.attendance.index');
 });
 

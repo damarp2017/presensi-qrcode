@@ -17,9 +17,9 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-header">Your Account</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">
+                <!-- <a href="#" class="dropdown-item dropdown-footer">
                     <i class="fas fa-user-circle"></i>&ensp;Profiles
-                </a>
+                </a> -->
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

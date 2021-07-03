@@ -25,9 +25,9 @@
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}"
                         class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
-                            Dashboard
+                            Beranda
                         </p>
                     </a>
                 </li>
@@ -83,7 +83,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ request()->routeIs('admin.parent.*') ? 'menu-open' : '' }}">
+                <!-- <li class="nav-item {{ request()->routeIs('admin.parent.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->routeIs('admin.parent.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tag"></i>
                         <p>
@@ -107,7 +107,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="{{ route('admin.config.index') }}"
                         class="nav-link {{ request()->routeIs('admin.config.index') ? 'active' : '' }}">
@@ -117,7 +117,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{ route('admin.attendance.student.index') }}"
                         class="nav-link {{ request()->routeIs('admin.attendance.student.index') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-clock"></i>
@@ -125,7 +125,7 @@
                             Absensi Siswa
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="{{ route('main') }}" class="nav-link">
                         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon" fill="none" viewBox="0 0 24 24"
