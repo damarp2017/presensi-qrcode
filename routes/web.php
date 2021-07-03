@@ -29,10 +29,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/main', function () {
-    return view('main');
-})->middleware(['permission:manage everything'])->name('main');
-
 Route::middleware('auth')->group(function () {
     // route that only admin can access
     Route::middleware(['permission:manage everything'])->group(function () {
@@ -98,6 +94,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendances/student', [
             AdminAttendance::class, 'index'
         ])->name('admin.attendance.student.index');
+        Route::get('/main', [
+            AdminAttendance::class, 'main'
+        ])->name('main');
         Route::post('/attendances/student', [
             AdminAttendance::class, 'attendance'
         ])->name('admin.attendance.student.store');
