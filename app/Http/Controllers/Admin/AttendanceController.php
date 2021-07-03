@@ -18,9 +18,10 @@ class AttendanceController extends Controller
         $this->config = Config::first();
         $this->time = Carbon::now()->toTimeString();
         $this->inBegin = $this->config->in_begin ?? null;
-        $this->inOver = $this->config->in_over ?? null;
+        $this->inOver = Carbon::parse($this->config->in_over)->addSeconds(59) ?? null;
         $this->outBegin = $this->config->out_begin ?? null;
-        $this->outOver = $this->config->out_over ?? null;
+        $this->outOver = Carbon::parse($this->config->out_over)->addSeconds(59) ?? null;
+
     }
 
     public function index(){
@@ -82,7 +83,7 @@ class AttendanceController extends Controller
       }
       elseif ($studentAttendance->in
               && $this->time >= $this->outBegin
-              && $this->time <= Carbon::parse($this->outOver)->addSeconds(59)) {
+              && $this->time <= $this->outOver) {
 
         return $this->attendanceOut($studentAttendance,$student);
       }else {
@@ -94,9 +95,10 @@ class AttendanceController extends Controller
       $message = "Absensi berangkat gagal!";
       if($this->time >= $this->inBegin && $this->time <= $this->inOver){
 
-        $delay = gmdate('H:i:s', Carbon::parse($this->time)->diffInSeconds($this->inBegin));
+        // $delay = $this->time > $this->inOver ?
+        //          gmdate('H:i:s', Carbon::parse($this->inOver)->diffInSeconds($this->time)) : null;
         $studentAttendance->in = Carbon::now()->toDateTimeString();
-        $studentAttendance->delay_in = $delay;
+        // $studentAttendance->delay_in = $delay;
         $studentAttendance->absent = null;
         $studentAttendance->update();
         $text = $student->name ." ". $student->grade->name;
@@ -111,12 +113,10 @@ class AttendanceController extends Controller
   protected function attendanceOut($studentAttendance, $student){
       $message = "Absensi pulang gagal!";
 
-      if($this->time >= $this->outBegin
-        && $this->time <= Carbon::parse($this->outOver)->addSeconds(59)){
+      if($this->time >= $this->outBegin && $this->time <= $this->outOver){
 
-        $delay = gmdate('H:i:s', Carbon::parse($this->time)->diffInSeconds($this->outBegin));
+        // $delay = gmdate('H:i:s', Carbon::parse($this->time)->diffInSeconds($this->outOver));
         $studentAttendance->out = Carbon::now()->toDateTimeString();
-        $studentAttendance->delay_out = $delay;
         $studentAttendance->absent = null;
         $studentAttendance->update();
         $text = $student->name ." ". $student->grade->name;

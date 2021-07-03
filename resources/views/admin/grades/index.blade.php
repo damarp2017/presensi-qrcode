@@ -35,7 +35,21 @@
         "info": true,
         "autoWidth": false,
         "responsive": true,
-        "order": [[1, 'asc']]
+        "order": [[1, 'asc']],
+        "language": {
+            "emptyTable": "Tidak ada data siswa yang ditemukan",
+            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+            "infoEmpty": "",
+            "paginate": {
+               "first":      "Awal",
+               "last":       "Akhir",
+               "next":       "Lanjut",
+               "previous":   "Kembali"
+             },
+        },
+        "oLanguage": {
+            "sSearch": "Cari"
+        }
       });
       t.on( 'order.dt search.dt', function () {
         t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
@@ -92,7 +106,7 @@
         </div>
         `;
         $('#modal-wrapper').html(modal);
-        
+
         $('#modal-danger').modal('show');
     }
 </script>

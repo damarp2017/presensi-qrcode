@@ -134,7 +134,16 @@
                                 d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
                         </svg>
                         <p>
-                            Scan QR Card
+                            Absensi Scan QR
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=""
+                        class="nav-link ">
+                        <i class="nav-icon fas fa-user-clock"></i>
+                        <p>
+                            Absensi Keterlambatan
                         </p>
                     </a>
                 </li>
@@ -143,8 +152,8 @@
                 <!-- parents can access -->
                 @can('show attendance')
                 <li class="nav-item">
-                    <a href="{{ route('parent.attendance.index') }}"
-                        class="nav-link {{ request()->routeIs('parent.attendance.index') ? 'active' : '' }}">
+                    <a href="{{ route('show.attendance') }}"
+                        class="nav-link {{ request()->routeIs('show.attendance') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Lihat Kehadiran
@@ -152,6 +161,16 @@
                     </a>
                 </li>
                 @endcan
+
+                <li class="nav-item">
+                    <a href=""
+                        class="nav-link ">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Rekap Absensi
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendance;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StudentAttendanceController;
+use App\Http\Controllers\Admin\ReportAttendanceController;
 
 //Parrent Controller
 use App\Http\Controllers\Parent\AttendanceController;
@@ -113,7 +114,7 @@ Route::middleware('auth')->group(function () {
     // route for parent
     Route::get('attendace', [
         StudentAttendanceController::class, 'index'
-    ])->name('parent.attendance.index');
+    ])->name('show.attendance');
 });
 
 require __DIR__ . '/auth.php';
