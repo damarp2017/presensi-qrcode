@@ -39,4 +39,14 @@ class Attendance extends Model
       $time = $this->out ? Carbon::parse($this->out)->format('H:i') : "-";
       return $time;
     }
+
+    public function delayIn(){
+      $time = $this->delay_in ? Carbon::parse($this->delay_in)->format('H:i') : "-";
+      return $time;
+    }
+
+    public function delayOut(){
+      $time = $this->delay_out ? Carbon::parse($this->delay_out)->format('H:i') : "-";
+      return $time;
+    }
 }

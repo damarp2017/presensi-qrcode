@@ -109,6 +109,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/config', [
             ConfigController::class, 'update'
         ])->name('admin.config.update');
+
+        // route admin report
+        Route::get('admin/report', [
+            ReportAttendanceController::class, 'index'
+        ])->name('admin.report');
     });
 
     // route for parent

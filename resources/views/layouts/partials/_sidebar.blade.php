@@ -143,7 +143,7 @@
                         class="nav-link ">
                         <i class="nav-icon fas fa-user-clock"></i>
                         <p>
-                            Absensi Keterlambatan
+                            Absensi Manual
                         </p>
                     </a>
                 </li>
@@ -163,8 +163,8 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a href=""
-                        class="nav-link ">
+                    <a href="{{ route('admin.report') }}"
+                        class="nav-link {{ request()->routeIs('admin.report') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Rekap Absensi
