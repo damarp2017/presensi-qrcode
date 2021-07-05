@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Carbon\Carbon;
 
-class ExportAttendance implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
+class AttendanceExport implements FromQuery,WithHeadings,WithMapping,ShouldAutoSize
 {
 
     use Exportable;
@@ -70,9 +70,9 @@ class ExportAttendance implements FromQuery,WithHeadings,WithMapping,ShouldAutoS
             'Kelas',
             'Status',
             'Tanggal',
-            'Absen Berangkat',
+            'Absen Masuk',
             'Absen Pulang',
-            'Terlambat Berangkat',
+            'Terlambat Masuk',
             'Terlambat Pulang'
         ];
     }

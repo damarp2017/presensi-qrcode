@@ -9,7 +9,7 @@ use App\Models\Student;
 use App\Models\Grade;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ExportAttendance;
+use App\Exports\SheetAttendance;
 
 class ReportAttendanceController extends Controller
 {
@@ -46,13 +46,6 @@ class ReportAttendanceController extends Controller
                               $query->where('grade_id', $grade);
                             })->get();
 
-        // $this->attendances = Student::with(['attendances' => function($query) use($startDate, $endDate){
-        //   $query->whereDate('created_at', '>=' ,$startDate)
-        //         ->whereDate('created_at', '<=' ,$endDate);
-        // }])->where('grade_id', $grade)
-        // ->get();
-        // dd($this->attendances->first());
-
       }elseif ($startDate && $endDate) {
         $this->attendances = Attendance::whereDate('created_at', '>=' ,$startDate)
                              ->whereDate('created_at', '<=' ,$endDate)
@@ -64,9 +57,12 @@ class ReportAttendanceController extends Controller
       $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d') : null;
       $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d') : null;
       $grade = $request->grade;
-      // dd((new ExportAttendance)->parameters($startDate, $endDate, $grade));
-      return (new ExportAttendance)->parameters($startDate, $endDate, $grade)
-      ->download('Absensi.xlsx');
+      $filename = $request->start_date == $request->end_date ?
+        'Absensi '.$request->start_date.'.xlsx' :
+        'Absensi '.$request->start_date.' sampai '.$request->end_date.'.xlsx';
+
+      return (new SheetAttendance($startDate, $endDate, $grade))
+      ->download($filename);
     }
 
 }
