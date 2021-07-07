@@ -114,6 +114,18 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/report', [
             ReportAttendanceController::class, 'index'
         ])->name('admin.report');
+
+        // route admin student attendance manual
+        Route::get('admin/attendance/manual', [
+          StudentAttendanceController::class, 'adminAttendance'
+        ])->name('admin.attendance.manual');
+        Route::patch('admin/attendance/in/manual', [
+          StudentAttendanceController::class, 'adminAttendanceInUpdate'
+        ])->name('admin.attendance-in.manual.update');
+
+        Route::patch('admin/attendance/out/manual', [
+          StudentAttendanceController::class, 'adminAttendanceOutUpdate'
+        ])->name('admin.attendance-out.manual.update');
     });
 
     // route for parent

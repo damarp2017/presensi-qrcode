@@ -18,9 +18,9 @@ class AttendanceController extends Controller
         $this->config = Config::first();
         $this->time = Carbon::now()->toTimeString();
         $this->inBegin = $this->config->in_begin ?? null;
-        $this->inOver = Carbon::parse($this->config->in_over)->addSeconds(59) ?? null;
+        $this->inOver = Carbon::parse($this->config->in_over)->addSeconds(59)->format('H:i:s') ?? null;
         $this->outBegin = $this->config->out_begin ?? null;
-        $this->outOver = Carbon::parse($this->config->out_over)->addSeconds(59) ?? null;
+        $this->outOver = Carbon::parse($this->config->out_over)->addSeconds(59)->format('H:i:s') ?? null;
 
     }
 

@@ -139,8 +139,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=""
-                        class="nav-link ">
+                    <a href="{{ route('admin.attendance.manual') }}"
+                        class="nav-link {{ request()->routeIs('admin.attendance.manual') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-clock"></i>
                         <p>
                             Absensi Manual
