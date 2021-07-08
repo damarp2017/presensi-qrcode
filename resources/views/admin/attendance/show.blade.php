@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-<!-- Toastr -->
-<link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/toastr/toastr.min.css') }}">
+
 @endpush
 
 @section('main')
@@ -42,7 +41,7 @@
                           <div class="form-group">
                               <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                   <input type="text" name="date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="{{now()->format('d-m-Y')}}"
-                                  value="{{ Request::get('date') ? Request::get('date') : now()->format('d/m/Y')}}">
+                                  value="{{ Request::get('date') ? Request::get('date') : now()->format('d/m/Y')}}" required>
                                   <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                   </div>
@@ -76,7 +75,7 @@
                             </div>
                           </div>
                         </form>
-                      <table id="list-attendance" class="table table-bordered table-hover">
+                        <table id="list-attendance" class="table table-bordered table-hover">
                           <thead>
                               <tr>
                                   <th>No</th>

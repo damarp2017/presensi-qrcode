@@ -30,6 +30,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/parent/attendance', [
+    ParentController::class, 'index'
+])->name('admin.parent.index');
+
 Route::middleware('auth')->group(function () {
     // route that only admin can access
     Route::middleware(['permission:manage everything'])->group(function () {
@@ -87,9 +91,7 @@ Route::middleware('auth')->group(function () {
         ])->name('admin.card.download');
 
         //route's admin parent
-        Route::get('/parents', [
-            ParentController::class, 'index'
-        ])->name('admin.parent.index');
+
 
         //route's admin student attendace
         Route::get('/attendances/student', [
@@ -128,7 +130,6 @@ Route::middleware('auth')->group(function () {
         ])->name('admin.attendance-out.manual.update');
     });
 
-    // route for parent
     Route::get('attendace', [
         StudentAttendanceController::class, 'index'
     ])->name('show.attendance');

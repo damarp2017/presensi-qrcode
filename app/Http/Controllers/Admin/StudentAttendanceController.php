@@ -54,6 +54,8 @@ class StudentAttendanceController extends Controller
         $status = $request->status == 'M' ? null : $request->status;
         $this->attendances = Attendance::whereDate('created_at', $date)
                             ->where('absent', $status)->get();
+      }else{
+        $this->attendances = Attendance::whereDate('created_at', $date)->get();
       }
 
     }
@@ -70,7 +72,7 @@ class StudentAttendanceController extends Controller
         if ($this->time > $this->inOver) {
           if ($attendance) {
             $attendance->update([
-              'in' => Carbon::now()->toDateTimeString(),
+              'in' => $request->absent ? null : Carbon::now()->toDateTimeString(),
               'absent' => $request->absent,
               'delay_in' => $request->absent ? null : gmdate('H:i:s', Carbon::parse($this->inOver)->diffInSeconds($this->time))
             ]);
