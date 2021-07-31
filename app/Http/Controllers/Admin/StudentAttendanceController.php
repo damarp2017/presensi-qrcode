@@ -69,7 +69,6 @@ class StudentAttendanceController extends Controller
       $date_in = Carbon::parse($request->date_in)->format('Y-m-d');
       if($student){
         $attendance = Attendance::where('student_id', $student->id)->whereDate('created_at', $date_in)->first();
-        if ($this->time > $this->inOver) {
           if ($attendance) {
             $attendance->update([
               'in' => $request->absent ? null : Carbon::now()->toDateTimeString(),
@@ -80,9 +79,7 @@ class StudentAttendanceController extends Controller
             return back()->with('error', "Data pada tanggal ".$request->date_in." tidak di temukan");
           }
           return back()->with('success', "Data berhasil di ubah");
-        }else {
-          return back()->with('error', "Sesi absensi berangkat belum berakhir");
-        }
+
       }
       return back()->with('error', "Data mahasiswa tidak ditemukan");
     }
@@ -92,7 +89,7 @@ class StudentAttendanceController extends Controller
       $date_out = Carbon::parse($request->date_out)->format('Y-m-d');
       if($student){
         $attendance = Attendance::where('student_id', $student->id)->whereDate('created_at', $date_out)->first();
-        if ($this->time > $this->outOver) {
+
           if ($attendance) {
             if ($attendance->absent) {
               return back()->with('error', "Siswa tidak masuk");
@@ -108,9 +105,7 @@ class StudentAttendanceController extends Controller
             return back()->with('error', "Data pada tanggal ".$request->date_in." tidak di temukan");
           }
           return back()->with('success', "Data berhasil di ubah");
-        }else {
-          return back()->with('error', "Sesi absensi pulang belum berakhir");
-        }
+
       }
       return back()->with('error', "Data mahasiswa tidak ditemukan");
     }
