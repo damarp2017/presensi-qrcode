@@ -26,13 +26,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-
 Route::get('/parent/attendance', [
     ParentController::class, 'index'
 ])->name('admin.parent.index');
+
+Route::get('/', [
+    AdminAttendance::class, 'main'
+])->name('main');
 
 Route::middleware('auth')->group(function () {
     // route that only admin can access
@@ -97,9 +97,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/attendances/student', [
             AdminAttendance::class, 'index'
         ])->name('admin.attendance.student.index');
-        Route::get('/main', [
-            AdminAttendance::class, 'main'
-        ])->name('main');
+
         Route::post('/attendances/student', [
             AdminAttendance::class, 'attendance'
         ])->name('admin.attendance.student.store');

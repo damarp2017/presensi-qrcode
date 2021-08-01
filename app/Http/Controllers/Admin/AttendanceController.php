@@ -14,7 +14,7 @@ class AttendanceController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth','permission:manage everything'])->except(['attendance']);
+        $this->middleware(['auth','permission:manage everything'])->except(['attendance','main']);
         $this->config = Config::first();
         $this->time = Carbon::now()->toTimeString();
         $this->inBegin = $this->config->in_begin ?? null;
